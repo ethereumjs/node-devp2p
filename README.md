@@ -1,1 +1,1 @@
-# ethereumjs-rlpx
+# ethereumjs-p2p
