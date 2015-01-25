@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ethereum/ethereumjs-p2p/issues"
   },
-  "homepage": "https://github.com/ethereum/ethereumjs-p2p"
+  "homepage": "https://github.com/ethereum/ethereumjs-p2p",
+  "dependencies": {
+    "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util"
+  }
 }
