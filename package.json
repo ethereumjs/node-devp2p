@@ -1,0 +1,24 @@
+{
+  "name": "ethereumjs-p2p",
+  "version": "1.0.0",
+  "description": "A javascript libary implementing RPLx the ethereum p2p protocal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ethereum/ethereumjs-p2p.git"
+  },
+  "keywords": [
+    "ethereum",
+    "p2p",
+    "networking"
+  ],
+  "author": "mjbecze",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/ethereum/ethereumjs-p2p/issues"
+  },
+  "homepage": "https://github.com/ethereum/ethereumjs-p2p"
+}
