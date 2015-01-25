@@ -1,7 +1,7 @@
 {
   "name": "ethereumjs-p2p",
   "version": "1.0.0",
-  "description": "A javascript libary implementing RPLx the ethereum p2p protocal",
+  "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
