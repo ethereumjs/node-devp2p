@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ethereum/ethereumjs-p2p",
   "dependencies": {
-    "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util"
+    "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
+    "rlp": "0.0.12"
   }
 }
