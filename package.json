@@ -24,5 +24,8 @@
   "dependencies": {
     "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
     "rlp": "0.0.12"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0"
   }
 }
