@@ -1,4 +1,4 @@
-# ethereumjs-p2p
+# ethereumjs-p2p [![Build Status](https://travis-ci.org/ethereum/ethereumjs-p2p.svg?branch=master)](https://travis-ci.org/ethereum/ethereumjs-p2p)
 Implements Ethereum's [Wire Protocol](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Wire-Protocol) and provides networking functions.
 
 #API
