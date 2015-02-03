@@ -25,6 +25,7 @@
     "async": "^0.9.0",
     "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
     "rlp": "0.0.12",
+    "server-destroy": "^1.0.0",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
