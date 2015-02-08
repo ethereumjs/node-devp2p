@@ -1,0 +1,2 @@
+require('./network')();
+require('./rating')();

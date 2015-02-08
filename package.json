@@ -4,7 +4,7 @@
   "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/network.js"
+    "test": "mocha ./test"
   },
   "repository": {
     "type": "git",
