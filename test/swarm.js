@@ -6,11 +6,9 @@ var Network = require('../index.js'),
   cluster = require('cluster');
 
 const NODES = 2;
-var ONLINE = 0;
-
 const internals = {
   //test port and host
-  port: 4447,
+  port: 2000,
   host: 'localhost'
 };
 
@@ -32,7 +30,7 @@ if (cluster.isMaster) {
   });
 
   function startSwarm(done){
-
+    var ONLINE = 0;
     for (var i = 0; i < NODES; i++) {
       cluster.fork({id: i});
     }
@@ -40,7 +38,6 @@ if (cluster.isMaster) {
     cluster.on('online', function(worker) {
       ONLINE++;
       if (ONLINE == NODES){
-        console.log('SWARM READY')
         setTimeout(done, 2000)
       }
     });
