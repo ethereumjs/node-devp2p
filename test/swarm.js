@@ -2,6 +2,7 @@ var Network = require('../index.js'),
   RLP = require('rlp'),
   net = require('net'),
   assert = require('assert'),
+  async = require('async'),
   cluster = require('cluster');
 
 const NODES = 2;
@@ -40,7 +41,7 @@ if (cluster.isMaster) {
       ONLINE++;
       if (ONLINE == NODES){
         console.log('SWARM READY')
-        done()
+        setTimeout(done, 2000)
       }
     });
 
@@ -53,35 +54,23 @@ if (cluster.isMaster) {
   };
 
   function command(msg, done) {
-    var worker;
-    var WORKING = 0;
+    var workers = Object.keys(cluster.workers);
 
-    console.error('Start Command: '+ msg)
-    Object.keys(cluster.workers).forEach(function(id) {
+    function sendMsg(id, done) {
       worker = cluster.workers[id];
-
-      console.error('Fetch Worker: '+ id)
       // Send Worker Command
-      console.log(worker.isConnected())
       worker.send(msg)
-      console.error('Sent '+msg +' Worker: '+ id)
-
-      // Wait For Worker Message
+      // Listen to Message
       worker.on('message', function(msg) {
-        if (msg.error){
-          console.error('ERROR IN WORKER')
+        if (msg.error) {
           done(msg.error)
-        } else if(++WORKING == NODES){
-          console.error('SUCESS IN WORKER')
-          done()
         } else {
-          console.error('WAITING FOR NEXT WORKER')
-          WORKING++
+          done()
         }
-
       });
-      
-    });
+    };
+
+    async.each(workers, sendMsg, done)
   }
 
 } else {
@@ -90,14 +79,14 @@ if (cluster.isMaster) {
     port = process.env.id + internals.port;
 
   process.on('message', function(msg) {
-    console.log(msg);
     if (msg == 'youListen'){
       meListen(report)
-    } else if (msg == 'youStop'){
+    }
+    if (msg == 'youStop'){
       meStop(report)
     }
   })
-  
+
   function report(err) {
     console.log('Errr???', err)
     if (err){
@@ -108,12 +97,10 @@ if (cluster.isMaster) {
   }
 
   function meListen(done){
-    // network.listen(port, internals.host, done)
-    done();
+    network.listen(port, internals.host, done)
   }
 
   function meStop(done) {
-    // network.stop(done);
-    done();
+    network.stop(done);
   }
 }
