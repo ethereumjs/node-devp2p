@@ -1,0 +1,7 @@
+# Editor Config File
+# http://EditorConfig.org
+root = true
+
+[lib/*.js]
+indent_style = space
+indent_size = 2

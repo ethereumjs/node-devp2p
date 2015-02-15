@@ -1,2 +1,0 @@
-require('./network')();
-require('./rating')();
