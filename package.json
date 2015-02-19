@@ -4,7 +4,7 @@
   "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/network.js"
+    "test": "mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "ethereumjs-p2p": "git+https://github.com/ethereum/ethereumjs-p2p",
     "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
     "rlp": "0.0.12",
+    "server-destroy": "^1.0.0",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
