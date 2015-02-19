@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ethereum/ethereumjs-p2p",
   "dependencies": {
     "async": "^0.9.0",
+    "ethereumjs-p2p": "git+https://github.com/ethereum/ethereumjs-p2p",
     "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
     "rlp": "0.0.12",
     "underscore": "^1.7.0"
