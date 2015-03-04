@@ -1,6 +1,6 @@
 {
   "name": "ethereumjs-p2p",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
   "main": "index.js",
   "scripts": {
@@ -23,8 +23,8 @@
   "homepage": "https://github.com/ethereum/ethereumjs-p2p",
   "dependencies": {
     "async": "^0.9.0",
-    "ethereumjs-dht": "git+https://github.com/ethereum/ethereumjs-dht",
-    "ethereumjs-util": "git+https://github.com/ethereum/ethereumjs-util",
+    "ethereumjs-dht": "0.0.1",
+    "ethereumjs-util": "0.0.8",
     "rlp": "0.0.12",
     "server-destroy": "^1.0.0",
     "underscore": "^1.7.0"
