@@ -1,7 +1,10 @@
-var Network = require('../index.js'),
-  RLP = require('rlp'),
-  net = require('net'),
-  assert = require('assert');
+var Network = require('../index.js');
+var RLP = require('rlp');
+var net = require('net');
+var assert = require('assert');
+var async = require('async');
+var levelup = require('levelup');
+var peerDb = levelup('/does/not/matter', { db: require('memdown') });
 
 var internals = {
   //test port and host
@@ -10,7 +13,7 @@ var internals = {
 };
 
 module.exports = function() {
-  
+ 
   describe('[Network]: Listening functions', function () {
     var network = new Network();
     it('should listen', function (done) {
@@ -25,7 +28,7 @@ module.exports = function() {
   describe('[Network]: Connect functions', function () {
 
     var server;
-    var network = new Network();
+    var network = new Network({peerDB: peerDb});
     var socket;
 
     it('should connect to a peer', function (done) {
@@ -35,13 +38,17 @@ module.exports = function() {
         done();
       });
       server.listen(internals.port, internals.host, function () {
-        network.connect(internals.port, internals.host);
+        network.connect({
+          port: internals.port,
+          address: internals.host,
+          id: 'some fake id so we don\'t pong the DH'
+        });
       });
     });
 
     it('should disconnect from peer', function (done) {
       socket.once('close', function () {
-        done();
+        server.close(done);
       });
 
       network.stop();
@@ -50,13 +57,15 @@ module.exports = function() {
 
   describe('[Network]: Peer Messages', function () {
 
-    var network = new Network(),
-      network2 = new Network(),
-      peer,
-      peer2;
+    var network = new Network({peerDB: peerDb});
+    var network2 = new Network({peerDB: peerDb});
+    var peer;
+    var peer2;
 
     before(function (done) {
-      network2.listen(internals.port + 1, internals.host, done);
+      network.listen(internals.port, internals.host, function(){
+        network2.listen(internals.port + 1, internals.host, done);
+      });
     });
 
     it('should send a hello message on connect', function (done) {
@@ -64,15 +73,7 @@ module.exports = function() {
         done();
       });
 
-      network2.on('connect', function (peer) {
-        peer.hello(new Buffer('test'), new Buffer(32), new Buffer(32));
-      });
-
-      network.on('connect', function (peer) {
-        peer.hello(new Buffer('test'), new Buffer(32), new Buffer(32));
-      });
-
-      network.connect(internals.port + 1, internals.host);
+      network.connect({port: internals.port + 1, address: internals.host});
     });
 
     it('should store the peer in a hash', function () {
