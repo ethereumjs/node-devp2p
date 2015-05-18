@@ -1,7 +1,7 @@
-# ethereumjs-p2p [![Build Status](https://travis-ci.org/ethereum/ethereumjs-p2p.svg?branch=master)](https://travis-ci.org/ethereum/ethereumjs-p2p)
-Implements Ethereum's [Wire Protocol](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Wire-Protocol) and provides networking functions.
+# ethereumjs-p2p [![Build Status](https://travis-ci.org/ethereum/devp2p-node.svg?branch=master)](https://travis-ci.org/ethereum/devp2p-node)
+Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) transport.
 
-#API
+#API 
 - [`Network`](#network)
     - [`new Network([host], [post], [options])`](#new-networkhost-port-options)
     - [`Network` options](#network-options)
@@ -46,11 +46,12 @@ Creates new Network object with the following arguments
 
 ### `Network` options
 When creating a Network the following options can be used to configure its behavoir.
-- `ehtVersion` - The version of the Ethereum protocol this peer implements. Defaults to 33 at present.
 - `timeout` - The lenght of time in milliseconds to wait for a peer to response after connecting to it
 - `maxPeers` - The max number of peer the network will try to connect to
 - `clientId` - specifies the client software identity, as a human-readable string 
 - `publicIp` - The public ip of this node
+- `secretKey` - a 32 byte `Buffer` use to encrypte packets and identify the node.
+- `subprotocols` - a hash containing the subprotocol name and its corisponding version number 
 
 ### `Network` methods
 #### `network.listen([port], [host])`
@@ -58,55 +59,22 @@ start the tcp server
 - `host` - The hostname or IP address the server is bound to. Defaults to `0.0.0.0` which means any available network
 - `port` - The TPC port the server is listening to. Defaults to port `30303` 
 
-#### `network.connect(port, host, [callback])`
+#### `network.connect(peer, [callback])`
 connect to a peer
-- `host` - the hostname or IP of the peer
-- `port` - the port of the peer
+- `peer` - a POJO containing
+    - `host` - the hostname or IP of the peer
+    - `port` - the port of the peer
+    - `id` - the id/public key of the peer
 - `callback` - a callback function
 
-#### `network.stop([callback])`
+#### `network.close([callback])`
 stops the tcp server and disconnects any peers
-#### `network.getPeers()`
-returns an array of connected peers a instances of the [peer object](#peer)
-#### `network.getPeerList()`
-returns an array of peers the server knows about but is not connected to. The server uses this list to replace peers that disconnect. 
 
-#### `network.broadcastPing([callback])`
-Broadcast a ping to all of the peers.
-
-#### `network.broadcastGetPeers([callback])`
-Broadcast a get peers packet to all of the peers.
-
-#### `network.broadcastTransactions(transactions, [callback])` 
-broadcasts an array of [transactions](API-transaction) to the connected peers
-- `transactions` - an array of valid [transactions](API-transaction)
-
-#### `network.broadcastBlocks(blocks, [callback])`
-broadcast an array of [blocks](API-Block) to the connected peers
-- `blocks` - an array of [blocks](API-Block) to broadcast
-
-#### `network.broadcastDisconnect(reason, [callback])`
-broadcast a disconnect packet to all of the peers
-- `reason` - the reason the client is disconnecting. See [`peer.sendDisconnect(reason, [callback])`](#peersenddisconnectreason-callback)
 
 ### `Network` events
 The Network object inherits from `Events.EventEmitter` and emits the following events.
-- `'message.hello'` - emitted on receiving a hello packet. Provides a [`hello`](#hello) object as an argument.
-- `'message.disconnect'` - emitted on receiving a disconnect packet.Provides a [`disconnect`](#disconnect) object as an argument.
-- `'message.ping'` - emitted on receiving a ping
-- `'message.pong'` - emitted on receiving a pong
-- `'message.sendPeers'` - emitted on receiving a send a peers packet. 
-- `'message.peers'` - emitted on receiving a peers packet. Provides a [`peers`](#peers) object as an argument.
-- `'message.transaction'` - emitted on receiving a transaction packet. Provides a [`transaction`](API-transaction) object as an argument.
-- `'message.blocks'` - emitted on receiving a blocks packet. Provides a [`blocks`](API-Block) object as an argument.
-- `'message.getChain'` - emitted on receiving a get chain packet. Provides a [`getChain`](#getchain) object as an argument.
-- `'message.getNotInChain'` - emitted on receiving a not in chain packet
-- `'message.getTransactions'` - emitted on receiving a get transactions packet
- 
-Each of the events are provided with the following arguments in this order
-
-- `message` - The decoded message parsed to an Object. [See event Message Objects](#event-message-objects)
-- `peer` - The [peer](#peer) that emitted the event
+- `connection` - fires whever we connect with a peetr
+    - `peer` - The [peer](#peer) that emitted the event
 
 ## `Peer`
 The peer represents a peer on the ethereum network. Peer objects cannot be created directly.
@@ -131,29 +99,6 @@ Sends the disconnect message, where reason is one of the following integers
 Send Ping
 #### `peer.sendPong([callback])`
 Send Pong
-#### `peer.sendGetPeers([callback])`
-Send a get peers reqeust
-#### `peer.sendPeers(peers, [callback])`
-Send peer list TODO
-- `peers` - an array of peers
-
-#### `peer.sendTransactions(transactions, [callback])`
-Sends a transaction list TODO
-- `transactions` - an array of [transactions](API-transaction) to send
-
-#### `peer.sendBlocks(blocks, [callback])`
-Sends blocks
-- `blocks` - an array of [blocks](API-Block) to send
-
-#### `peer.sendGetChain(parents, count, [callback])`
-Sends a request for part of a block chain TODO
-- `parents` - an array of parent block hashes
-- `count` - the number of requested blocks
-
-#### `peer.sendNotInChain([callback])`
-Sends not in chain message
-#### `peer.sendGetTransactions([callback])`
-Sends a request for transactions
 
 ##`Peer` events
 peer events are the same as [`Network` events](#network-events)
@@ -177,10 +122,6 @@ The peers message is an array of object with the following fields
 - `ip` - The IP of the peer 
 - `port` - The port of the peer
 - `id` - The Id of the peer
-
-### `getChain`
-- `parents` - An array of parent block hashes
-- `count` - The number of request blocks
 
 ### `disconnect`
 - `reason` - the reason for the disconnect
