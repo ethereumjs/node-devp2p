@@ -31,6 +31,7 @@
     "rlp": "0.0.14",
     "secp256k1": "0.0.15",
     "server-destroy": "^1.0.0",
+    "sha3": "^1.1.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
