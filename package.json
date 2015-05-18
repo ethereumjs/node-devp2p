@@ -26,8 +26,8 @@
     "bitcore-ecies": "^0.10.2",
     "bitwise-xor": "0.0.0",
     "ethereumjs-dht": "0.0.2",
-    "ethereumjs-util": "0.0.8",
-    "rlp": "0.0.12",
+    "ethereumjs-util": "0.1.0",
+    "rlp": "0.0.14",
     "server-destroy": "^1.0.0",
     "underscore": "^1.7.0"
   },

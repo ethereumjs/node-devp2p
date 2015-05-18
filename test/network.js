@@ -10,7 +10,6 @@ var internals = {
   host: 'localhost'
 };
 
-
 describe('[Network]: Listening functions', function() {
   var network = new Network();
   it('should listen', function(done) {
@@ -22,7 +21,7 @@ describe('[Network]: Listening functions', function() {
   });
 });
 
-describe.only('[Network]: Peer Messages', function() {
+describe('[Network]: Peer Messages', function() {
 
   var network = new Network();
   var network2 = new Network();
@@ -65,5 +64,11 @@ describe.only('[Network]: Peer Messages', function() {
       done();
     });
     peer2.end(0x08);
+  });
+
+  it('should stop listening', function(done) {
+    network.close(function(){
+      network2.close(done);
+    });
   });
 });
