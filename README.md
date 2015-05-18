@@ -9,13 +9,6 @@ Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) tr
         - [`network.listen([port], [host])`](#networklistenport-host)
         - [`network.connect(port, host, [callback])`](#networkconnectport-host-callback)
         - [`network.stop([callback])`](#networkstopcallback)
-        - [`network.getPeers()`](#networkgetpeers)
-        - [`network.getPeerList()`](#networkgetpeerlist)
-        - [`network.broadcastPing([callback])`](#networkbroadcastpingcallback)
-        - [`network.broadcastGetPeers([callback])`](#networkbroadcastgetpeerscallback)
-        - [`network.broadcastTransactions(transactions, [callback])`](#networkbroadcasttransactionstxs-callback)
-        - [`network.broadcastBlocks(blocks, [callback])`](#networkbroadcastblocksblocks-callback)
-        - [`network.broadcastDisconnect(reason, [callback])`](#networkbroadcastdisconnectreason-callback)
     - [`Network` events](#network-events)
 - [`Peer`](#peer)
     - [`Peer` methods](#peer-methods)
@@ -23,21 +16,7 @@ Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) tr
         - [`peer.sendDisconnect(reason, [callback])`](#peersenddisconnectreason-callback)
         - [`peer.sendPing([callback])`](#peersendpingcallback)
         - [`peer.sendPong([callback])`](#peersendpongcallback)
-        - [`peer.sendGetPeers([callback])`](#peersendgetpeerscallback)
-        - [`peer.sendPeers(peers, [callback])`](#peersendpeerspeers-callback)
-        - [`peer.sendTransactions(transactions, [callback])`](#peersendtransactionstransactions-callback)
-        - [`peer.sendBlocks(blocks, [callback])`](#peersendblocksblocks-callback)
-        - [`peer.sendGetChain(parents, count,[callback])`](#peersendgetchainparents-count-callback)
-        - [`peer.sendNotInChain([callback])`](#peersendnotinchaincallback)
-        - [`peer.sendGetTransactions([callback])`](#peersendgettransactionscallback)
     - [`Peer` events](#peer-events)
-- [Schemas](#schemas)
-    -  [`peers`](#peers)
-    -  [`getChain`](#getchain)
-    -  [`blocks`](#blocks)
-    -  [`header`](#header)
-    -  [`transaction`](#transaction)
-    -  [`disconnect`](#disconnect)
 
 ## `Network`
 ### `new Network([options])`
@@ -102,29 +81,6 @@ Send Pong
 
 ##`Peer` events
 peer events are the same as [`Network` events](#network-events)
-
-# Schemas
-After the payload is parsed it passed along to the events in form of these objects
-#### `hello`
-- `protocolVersion` - the protocol version of the peer
-- `networkId` - should be 0 
-- `clientId` - Specifies the client software identity, as a human-readable string (e.g. "Ethereum(++)/1.0.0"). 
-- `capabilities` - pecifies the capabilities of the client as a set of boolean flags
-    - `blockchainQuerying`  
-    - `peerDiscovery`
-    - `transactionRelaying`
-- `port` -  specifies the port that the client is listening on 
-- `ip` - the ip of the connecting peer
-- `id` - a 512-bit hash that identifies this node
-
-### `peers`
-The peers message is an array of object with the following fields
-- `ip` - The IP of the peer 
-- `port` - The port of the peer
-- `id` - The Id of the peer
-
-### `disconnect`
-- `reason` - the reason for the disconnect
 
 # LICENSE
 GPL
