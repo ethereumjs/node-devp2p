@@ -1,4 +1,4 @@
-# ethereumjs-p2p [![Build Status](https://travis-ci.org/ethereum/devp2p-node.svg?branch=master)](https://travis-ci.org/ethereum/devp2p-node)
+# node-devp2p [![Build Status](https://travis-ci.org/ethereum/devp2p-node.svg?branch=master)](https://travis-ci.org/ethereum/devp2p-node)
 Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) transport.
 
 #API 
