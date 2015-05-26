@@ -26,7 +26,7 @@
     "bigi": "^1.4.0",
     "bitwise-xor": "0.0.0",
     "ecurve": "^1.0.1",
-    "ethereumjs-dht": "0.0.4",
+    "ethereumjs-dht": "0.0.8",
     "ethereumjs-util": "0.1.0",
     "rlp": "0.0.14",
     "secp256k1": "0.0.15",
