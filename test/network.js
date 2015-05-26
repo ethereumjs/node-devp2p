@@ -7,7 +7,7 @@ var async = require('async');
 var internals = {
   //test port and host
   port: 4447,
-  host: 'localhost'
+  host: '0.0.0.0'
 };
 
 describe('[Network]: Listening functions', function() {

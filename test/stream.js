@@ -9,7 +9,7 @@ var stream2;
 var internals = {
   //test port and host
   port: 4447,
-  host: 'localhost'
+  host: '0.0.0.0'
 };
 
 var data = 'hello world!'
