@@ -6,6 +6,7 @@ var peer = false;
 var peer2 = false;
 var stream1;
 var stream2;
+
 var internals = {
   //test port and host
   port: 4447,
