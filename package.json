@@ -1,6 +1,6 @@
 {
   "name": "devp2p",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "async": "^0.9.0",
     "bigi": "^1.4.0",
     "bitwise-xor": "0.0.0",
-    "devp2p-dpt": "0.0.1",
+    "devp2p-dpt": "0.0.2",
     "ecurve": "^1.0.1",
     "ethereumjs-util": "0.1.0",
     "rlp": "0.0.14",
