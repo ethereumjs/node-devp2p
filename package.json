@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethereum/ethereumjs-p2p.git"
+    "url": "https://github.com/ethereum/node-devp2p.git"
   },
   "keywords": [
     "ethereum",
