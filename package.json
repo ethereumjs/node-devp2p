@@ -16,7 +16,7 @@
     "networking"
   ],
   "author": "mjbecze",
-  "license": "GPL",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/ethereum/ethereumjs-p2p/issues"
   },
@@ -25,11 +25,11 @@
     "async": "^0.9.0",
     "bigi": "^1.4.0",
     "bitwise-xor": "0.0.0",
-    "devp2p-dpt": "0.0.2",
+    "devp2p-dpt": "0.0.3",
     "ecurve": "^1.0.1",
     "ethereumjs-util": "0.1.0",
     "rlp": "0.0.14",
-    "secp256k1": "0.0.15",
+    "secp256k1": "1.1.4",
     "server-destroy": "^1.0.0",
     "sha3": "^1.1.0",
     "underscore": "^1.8.3"
