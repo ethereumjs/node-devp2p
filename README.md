@@ -1,5 +1,10 @@
-# node-devp2p [![Build Status](https://travis-ci.org/ethereum/devp2p-node.svg?branch=master)](https://travis-ci.org/ethereum/devp2p-node)
+# node-devp2p  [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Build Status](https://travis-ci.org/ethereum/node-devp2p.svg?branch=master)](https://travis-ci.org/ethereum/node-devp2p) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/ethereumjs-lib?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) or #ethereumjs on freenode
+
 Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) transport.
+
+
+# INSTALL
+`npm install devp2p`
 
 #API 
 - [`Network`](#network)
