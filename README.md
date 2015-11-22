@@ -89,4 +89,4 @@ Send Pong
 peer events are the same as [`Network` events](#network-events)
 
 # LICENSE
-GPL
+MLP-2.0
