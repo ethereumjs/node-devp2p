@@ -1,13 +1,13 @@
 # node-devp2p 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Build Status](https://travis-ci.org/ethereum/node-devp2p.svg?branch=master)](https://travis-ci.org/ethereum/node-devp2p) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/ethereumjs-lib?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) or #ethereumjs on freenode
 
-Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) transport.
+Implements the [RLPx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) transport protocol.
 
 
 # INSTALL
 `npm install devp2p`
 
-#API 
+# API
 - [`Network`](#network)
     - [`new Network([host], [post], [options])`](#new-networkhost-port-options)
     - [`Network` options](#network-options)
@@ -25,27 +25,29 @@ Implements the [RPLx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) tr
     - [`Peer` events](#peer-events)
 
 ## `Network`
+
 ### `new Network([options])`
 Creates new Network object with the following arguments
 - `options` - An object with the Network configuration. See [`Network` options](#network-options)
 
 ### `Network` options
-When creating a Network the following options can be used to configure its behavoir.
-- `timeout` - The lenght of time in milliseconds to wait for a peer to response after connecting to it
-- `maxPeers` - The max number of peer the network will try to connect to
-- `clientId` - specifies the client software identity, as a human-readable string 
+When creating a Network the following options can be used to configure its behaviour.
+- `timeout` - The length of time in milliseconds to wait for a peer to respond after connecting to it
+- `maxPeers` - The max number of peers the network will try to connect to
+- `clientId` - Specifies the client software identity, as a human-readable string
 - `publicIp` - The public ip of this node
-- `secretKey` - a 32 byte `Buffer` use to encrypte packets and identify the node.
-- `subprotocols` - a hash containing the subprotocol name and its corisponding version number 
+- `secretKey` - A 32 byte `Buffer` used to encrypte packets and identify the node
+- `subprotocols` - A hash containing the subprotocol name and its corresponding version number
 
 ### `Network` methods
+
 #### `network.listen([port], [host])`
-start the tcp server
+Start the tcp server
 - `host` - The hostname or IP address the server is bound to. Defaults to `0.0.0.0` which means any available network
-- `port` - The TPC port the server is listening to. Defaults to port `30303` 
+- `port` - The TCP port the server is listening to. Defaults to port `30303`
 
 #### `network.connect(peer, [callback])`
-connect to a peer
+Connect to a peer
 - `peer` - a POJO containing
     - `host` - the hostname or IP of the peer
     - `port` - the port of the peer
@@ -53,8 +55,7 @@ connect to a peer
 - `callback` - a callback function
 
 #### `network.close([callback])`
-stops the tcp server and disconnects any peers
-
+Stops the tcp server and disconnects any peers
 
 ### `Network` events
 The Network object inherits from `Events.EventEmitter` and emits the following events.
@@ -66,8 +67,10 @@ The peer represents a peer on the ethereum network. Peer objects cannot be creat
 - file - [lib/network/peer.js](../tree/master/lib/network/peer.js)
 
 ### `Peer` methods
+
 #### `peer.sendHello([callback])`
 Sends the hello message
+
 #### `peer.sendDisconnect(reason, [callback])`
 Sends the disconnect message, where reason is one of the following integers
 - `0x00` - Disconnect requested
@@ -82,11 +85,12 @@ Sends the disconnect message, where reason is one of the following integers
 
 #### `peer.sendPing([callback])`
 Send Ping
+
 #### `peer.sendPong([callback])`
 Send Pong
 
-##`Peer` events
-peer events are the same as [`Network` events](#network-events)
+## `Peer` events
+Peer events are the same as [`Network` events](#network-events)
 
 # LICENSE
-MLP-2.0
+MPL-2.0
