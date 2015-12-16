@@ -29,7 +29,7 @@
     "ecurve": "^1.0.1",
     "ethereumjs-util": "2.0.3",
     "rlp": "2.0.0",
-    "secp256k1": "1.1.4",
+    "secp256k1": "^1.1.6",
     "server-destroy": "^1.0.0",
     "sha3": "^1.1.0",
     "underscore": "^1.8.3"
