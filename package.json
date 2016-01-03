@@ -24,7 +24,7 @@
   "dependencies": {
     "async": "^1.4.2",
     "bigi": "^1.4.0",
-    "bitwise-xor": "0.0.0",
+    "buffer-xor": "^1.0.3",
     "devp2p-dpt": "1.0.1",
     "ecurve": "^1.0.1",
     "ethereumjs-util": "2.4.0",
