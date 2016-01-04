@@ -8,7 +8,7 @@
     "coverage": "istanbul cover tape ./test/*.js",
     "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
     "lint": "standard",
-    "build:docs": "documentation --github  -f md ./lib/index.js > ./docs/index.md"
+    "build:docs": "documentation --github  -f md ./index.js > ./docs/index.md"
   },
   "repository": {
     "type": "git",
