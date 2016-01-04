@@ -49,14 +49,14 @@ starts the tcp server
 -   `port` **[Number]** The hostname or IP address the server is bound to. Defaults to 0.0.0.0 which means any available network (optional, default `30303`)
 -   `host` **[String]** The TPC port the server is listening to. Defaults to port 30303 (optional, default `'0.0.0.0'`)
 -   `cb`  
-
-# Network#closing
+# Network Events
+## closing
 
 [lib/index.js:183-183](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L183-L183 "Source code on GitHub")
 
 Emitted when a peer disconnects. Gives the peer to the handler.
 
-# Network#connection
+## connection
 
 [lib/index.js:173-173](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L173-L173 "Source code on GitHub")
 
@@ -88,25 +88,26 @@ Creates a Duplex stream. Uses node's steams
 
 [lib/peer.js:241-243](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L241-L243 "Source code on GitHub")
 
-# Peer#connection
+# Peer Events
+## connection
 
 [lib/peer.js:208-208](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L208-L208 "Source code on GitHub")
 
 Emitted whenever this peer connects. Gives the peer to the handler.
 
-# Peer#data
+## data
 
 [lib/peer.js:176-176](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L176-L176 "Source code on GitHub")
 
 Emitted when the peer gets data from the network
 
-# Peer#pong
+## pong
 
 [lib/peer.js:233-233](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L233-L233 "Source code on GitHub")
 
 Emitted when this peer gets a `pong`
 
-# Peet#closing
+## closing
 
 [lib/peer.js:218-218](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L218-L218 "Source code on GitHub")
 
