@@ -1,6 +1,6 @@
 # Network
 
-[lib/index.js:25-74](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L25-L74 "Source code on GitHub")
+[lib/index.js:25-74](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L25-L74 "Source code on GitHub")
 
 Creates a new Networking Object. This Implements Ethereum's Wire Protocol and provides networking functions.
 
@@ -16,7 +16,7 @@ Creates a new Networking Object. This Implements Ethereum's Wire Protocol and pr
 
 ## close
 
-[lib/index.js:203-225](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L203-L225 "Source code on GitHub")
+[lib/index.js:203-225](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L203-L225 "Source code on GitHub")
 
 stops the tcp server and disconnects any peers
 
@@ -26,7 +26,7 @@ stops the tcp server and disconnects any peers
 
 ## connect
 
-[lib/index.js:106-151](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L106-L151 "Source code on GitHub")
+[lib/index.js:106-151](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L106-L151 "Source code on GitHub")
 
 connects to a peer
 
@@ -40,7 +40,7 @@ connects to a peer
 
 ## listen
 
-[lib/index.js:84-96](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L84-L96 "Source code on GitHub")
+[lib/index.js:84-96](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L84-L96 "Source code on GitHub")
 
 starts the tcp server
 
@@ -52,19 +52,19 @@ starts the tcp server
 # Network Events
 ## closing
 
-[lib/index.js:183-183](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L183-L183 "Source code on GitHub")
+[lib/index.js:183-183](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L183-L183 "Source code on GitHub")
 
 Emitted when a peer disconnects. Gives the peer to the handler.
 
 ## connection
 
-[lib/index.js:173-173](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/index.js#L173-L173 "Source code on GitHub")
+[lib/index.js:173-173](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/index.js#L173-L173 "Source code on GitHub")
 
 Emitted whenever a peer connects. Gives the peer to the handler.
 
 # Peer
 
-[lib/peer.js:26-91](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L26-L91 "Source code on GitHub")
+[lib/peer.js:26-91](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L26-L91 "Source code on GitHub")
 
 The peer represents a peer on the ethereum network. Peer objects cannot be created directly. The `Network` creates them when a connection happens
 
@@ -76,7 +76,7 @@ The peer represents a peer on the ethereum network. Peer objects cannot be creat
 
 ## createStream
 
-[lib/peer.js:326-328](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L326-L328 "Source code on GitHub")
+[lib/peer.js:342-344](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L342-L344 "Source code on GitHub")
 
 Creates a Duplex stream. Uses node's steams
 
@@ -84,31 +84,51 @@ Creates a Duplex stream. Uses node's steams
 
 -   `opts`  
 
+## sendDisconnect
+
+[lib/peer.js:311-325](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L311-L325 "Source code on GitHub")
+
+Sends the disconnect message, where reason is one of the following integers
+
+-   0x00 - Disconnect requested
+-   0x01 - TCP sub-system error
+-   0x02 - Bad protocol
+-   0x03 - Useless peer
+-   0x04 - Too many peers
+-   0x05 - Already connected
+-   0x06 - Wrong genesis block
+-   0x07 - Incompatible network protocols
+-   0x08 - Client quitting
+
+**Parameters**
+
+-   `reason` **Inteter** 
+
 ## toString
 
-[lib/peer.js:241-243](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L241-L243 "Source code on GitHub")
+[lib/peer.js:241-243](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L241-L243 "Source code on GitHub")
 
 # Peer Events
 ## connection
 
-[lib/peer.js:208-208](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L208-L208 "Source code on GitHub")
+[lib/peer.js:208-208](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L208-L208 "Source code on GitHub")
 
 Emitted whenever this peer connects. Gives the peer to the handler.
 
 ## data
 
-[lib/peer.js:176-176](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L176-L176 "Source code on GitHub")
+[lib/peer.js:176-176](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L176-L176 "Source code on GitHub")
 
 Emitted when the peer gets data from the network
 
 ## pong
 
-[lib/peer.js:233-233](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L233-L233 "Source code on GitHub")
+[lib/peer.js:233-233](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L233-L233 "Source code on GitHub")
 
 Emitted when this peer gets a `pong`
 
 ## closing
 
-[lib/peer.js:218-218](https://github.com/ethereumjs/node-devp2p/blob/9bc24a7cf81d35bd6fc2bde90b42266ce35d44ef/lib/peer.js#L218-L218 "Source code on GitHub")
+[lib/peer.js:218-218](https://github.com/ethereumjs/node-devp2p/blob/f6c67db4c164299e4bddb935edcf9505de40d582/lib/peer.js#L218-L218 "Source code on GitHub")
 
 Emitted when this peer disconnects. Gives the peer to the handler.
