@@ -12,21 +12,7 @@ Implements the [RLPx](https://github.com/ethereum/devp2p/blob/master/rlpx.md) tr
 `npm install devp2p`
 
 # API
-- [`Network`](#network)
-    - [`new Network([host], [post], [options])`](#new-networkhost-port-options)
-    - [`Network` options](#network-options)
-    - [`Network` methods](#network-methods)
-        - [`network.listen([port], [host])`](#networklistenport-host)
-        - [`network.connect(port, host, [callback])`](#networkconnectport-host-callback)
-        - [`network.stop([callback])`](#networkstopcallback)
-    - [`Network` events](#network-events)
-- [`Peer`](#peer)
-    - [`Peer` methods](#peer-methods)
-        - [`peer.sendHello([callback])`](#peersendhellocallback)
-        - [`peer.sendDisconnect(reason, [callback])`](#peersenddisconnectreason-callback)
-        - [`peer.sendPing([callback])`](#peersendpingcallback)
-        - [`peer.sendPong([callback])`](#peersendpongcallback)
-    - [`Peer` events](#peer-events)
+[./docs/](./docs/index.md)
 
 ## `Network`
 
