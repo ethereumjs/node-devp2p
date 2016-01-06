@@ -22,9 +22,9 @@
   "author": "mjbecze",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ethereumjs/ethereumjs-p2p/issues"
+    "url": "https://github.com/ethereumjs/node-devp2p/issues"
   },
-  "homepage": "https://github.com/ethereumjs/ethereumjs-p2p",
+  "homepage": "https://github.com/ethereumjs/node-devp2p",
   "dependencies": {
     "async": "^1.4.2",
     "bigi": "^1.4.0",
