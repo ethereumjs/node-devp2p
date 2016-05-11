@@ -2,43 +2,54 @@
   "name": "devp2p",
   "version": "0.0.5",
   "description": "A javascript libary implementing RPLx the ethereum p2p protocol",
-  "main": "index.js",
-  "scripts": {
-    "test": " tape ./test/*.js",
-    "coverage": "istanbul cover tape ./test/*.js",
-    "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
-    "lint": "standard",
-    "build:docs": "documentation --github  -f md ./index.js > ./docs/index.md"
+  "keywords": [
+    "ethereum",
+    "p2p",
+    "networking",
+    "rlpx",
+    "eth",
+    "eth61",
+    "eth62",
+    "eth63"
+  ],
+  "homepage": "https://github.com/ethereumjs/node-devp2p",
+  "bugs": {
+    "url": "https://github.com/ethereumjs/node-devp2p/issues"
   },
+  "license": "MPL-2.0",
+  "author": "Martin Becze <mb@ethdev.com>",
+  "contributors": [
+    "Alex Beregszaszi <alex@rtfs.hu>",
+    "Kirill Fomichev <fanatid@ya.ru> (https://github.com/fanatid)"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ethereumjs/node-devp2p.git"
   },
-  "keywords": [
-    "ethereum",
-    "p2p",
-    "networking"
-  ],
-  "author": "mjbecze",
-  "license": "MPL-2.0",
-  "bugs": {
-    "url": "https://github.com/ethereumjs/node-devp2p/issues"
+  "scripts": {
+    "coverage": "nyc tape test/*.js",
+    "integration": "tape test/integration/*.js",
+    "lint": "standard",
+    "test": "npm run lint && npm run unit",
+    "unit": "tape test/*.js"
   },
-  "homepage": "https://github.com/ethereumjs/node-devp2p",
   "dependencies": {
-    "bigi": "^1.4.0",
-    "buffer-xor": "^1.0.3",
-    "devp2p-dpt": "^1.0.1",
-    "ecurve": "^1.0.1",
-    "ethereumjs-util": "^2.4.0",
-    "keccakjs": "^0.1.0",
+    "bl": "^1.1.2",
+    "buffer-xor": "^2.0.1",
+    "debug": "^2.2.0",
+    "inherits": "^2.0.1",
+    "ip": "^1.1.3",
+    "k-bucket": "^2.0.1",
+    "keccakjs": "^0.2.0",
     "lru-cache": "^4.0.1",
     "ms": "^0.7.1",
-    "randombytes": "^2.0.3",
     "rlp": "^2.0.0",
-    "secp256k1": "^3.0.1",
-    "server-destroy": "^1.0.0",
-    "underscore": "^1.8.3"
+    "secp256k1": "^3.1.0",
+    "server-destroy": "^1.0.0"
   },
   "devDependencies": {
     "chalk": "^1.1.3",
