@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/ethereumjs/node-devp2p",
   "dependencies": {
-    "async": "^1.4.2",
     "bigi": "^1.4.0",
     "buffer-xor": "^1.0.3",
     "devp2p-dpt": "^1.0.1",
