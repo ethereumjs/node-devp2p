@@ -1,4 +1,6 @@
 const devp2p = require('../lib')
+const EthTx = require('ethereumjs-tx')
+const rlp = require('rlp')
 const ms = require('ms')
 const chalk = require('chalk')
 
@@ -62,9 +64,21 @@ rlpx.on('peer:add', (peer) => {
   })
 
   eth.on('error', (err) => console.log(chalk.red(`ETH error: ${err}`)))
-  eth.on('message', (code, data) => {
-    // console.log(`new message from ${addr} ${code} ${JSON.stringify(data)}`)
-    console.log(`new message from ${addr} ${code}`)
+  eth.on('message', (code, payload) => {
+    switch (code) {
+      case devp2p.ETH.MESSAGE_CODES.TX:
+        let tx = new EthTx(payload[0])
+        console.log(`new tx (${addr}): ${tx.hash().toString('hex')}`)
+        break
+
+      case devp2p.ETH.MESSAGE_CODES.NEW_BLOCK_HASHES:
+        console.log(`new block (${addr}): ${payload[0].toString('hex')}`)
+        break
+
+      default:
+        console.log(`new message (${addr}) ${code} ${rlp.encode(payload).toString('hex')}`)
+        break
+    }
   })
 
   peer.once('close', () => {
