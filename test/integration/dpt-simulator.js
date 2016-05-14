@@ -1,3 +1,4 @@
+'use strict'
 const tape = require('tape')
 const async = require('async')
 const devp2p = require('../../lib')

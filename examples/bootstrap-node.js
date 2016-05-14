@@ -1,3 +1,4 @@
+'use strict'
 const DPT = require('../lib').DPT
 const chalk = require('chalk')
 

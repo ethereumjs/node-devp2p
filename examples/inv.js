@@ -1,3 +1,4 @@
+'use strict'
 const devp2p = require('../lib')
 const EthTx = require('ethereumjs-tx')
 const rlp = require('rlp')
