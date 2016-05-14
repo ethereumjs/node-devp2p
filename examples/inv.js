@@ -44,16 +44,12 @@ const rlpx = new devp2p.RLPx(new Buffer(PRIVATE_KEY, 'hex'), {
 
 rlpx.on('error', (err) => console.log(`RLPx error: ${err.stack}`))
 
-rlpx.on('peer:error', (peer, err) => {
-  console.log(`Peer error: ${peer._socket.remoteAddress}:${peer._socket.remotePort} ${err.stack}`)
-})
-
 rlpx.on('peer:add', (peer) => {
   let addr = `${peer._socket.remoteAddress}:${peer._socket.remotePort}`
   console.log(chalk.green(`Add peer: ${addr} (total: ${Object.keys(rlpx._peers).length})`))
-  peer.on('data', (data) => {
-    // console.log(`Peer data: ${addr} ${peer.getId().toString('hex')} ${data.toString('hex')}`)
-  })
+
+  peer.on('error', (peer, err) => console.log(`Peer error (${addr}): ${err.stack}`))
+  peer.on('data', (data) => {})
 
   let eth = peer.getProtocols()[0]
   eth.sendStatus({

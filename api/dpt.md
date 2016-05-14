@@ -42,8 +42,8 @@
   - `Buffer` privateKey
   - `Object` [options]
     - `function` [createSocket] - function for creating socket, by default `dgram.createSocket('udp4')` will be called
-    - `number` [timeout] - request timeout, 60s by default
-    - `number` [refreshInterval] - refresh interval, 5m by default
+    - `number` [timeout] - request timeout, 10s by default
+    - `number` [refreshInterval] - refresh interval, 60s by default
     - `Object` [endpoint]
       - `string` address
       - `?number` udpPort
