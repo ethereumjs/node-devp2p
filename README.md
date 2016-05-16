@@ -23,8 +23,9 @@ npm install devp2p-dpt
 
 See examples in [examples/](examples/)
 
-  - [bootstrap](examples/bootstrap.js)
-  - [inv](examples/inv.js)
+  - [bootstrap](examples/bootstrap.js) Run DPT node
+  - [inv](examples/inv.js) Print all new Tx and Block hashes
+  - [addresses](examples/addresses.js) Print all participated addresses
 
 # API
 
