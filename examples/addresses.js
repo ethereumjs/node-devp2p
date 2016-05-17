@@ -85,10 +85,12 @@ rlpx.on('peer:add', (peer) => {
   eth.on('message', (code, payload) => {
     switch (code) {
       case devp2p.ETH.MESSAGE_CODES.TX:
-        let tx = new EthTx(payload[0])
-        if (!tx.validate()) break
-        console.log(`new tx (${addr}): ${tx.hash().toString('hex')}`)
-        onTx(tx)
+        for (let item of payload) {
+          let tx = new EthTx(item)
+          if (!tx.validate()) break
+          console.log(`new tx (${addr}): ${tx.hash().toString('hex')}`)
+          onTx(tx)
+        }
         break
 
       case devp2p.ETH.MESSAGE_CODES.NEW_BLOCK_HASHES:
