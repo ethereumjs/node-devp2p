@@ -1,17 +1,17 @@
 'use strict'
 const devp2p = require('../lib')
 const LRUCache = require('lru-cache')
-const EthTx = require('ethereumjs-tx')
-const EthBlock = require('ethereumjs-block')
+const EthereumTx = require('ethereumjs-tx')
+const EthereumBlock = require('ethereumjs-block')
 const rlp = require('rlp')
 const ms = require('ms')
 const chalk = require('chalk')
 
 const PRIVATE_KEY = 'd772e3d6a001a38064dd23964dd2836239fa0e6cec8b28972a87460a17210fe9'
 const BOOTNODES = [
-  { address: '52.16.188.185', port: 30303 },
-  { address: '54.94.239.50', port: 30303 },
-  { address: '52.74.57.123', port: 30303 }
+  { address: '52.16.188.185', udpPort: 30303, tcpPort: 30303 },
+  { address: '54.94.239.50', udpPort: 30303, tcpPort: 30303 },
+  { address: '52.74.57.123', udpPort: 30303, tcpPort: 30303 }
 ]
 
 const lruHashes = new LRUCache({ max: 1000, stale: true })
@@ -37,22 +37,15 @@ function onBlock (block) {
 const dpt = new devp2p.DPT(new Buffer(PRIVATE_KEY, 'hex'), {
   endpoint: {
     address: '0.0.0.0',
-    udpPort: 30303,
-    tcpPort: 30303
+    udpPort: null,
+    tcpPort: null
   }
 })
+setInterval(() => {
+  console.log(chalk.yellow(`Total nodes in DPT: ${dpt.getPeers().length}`))
+}, ms('30s'))
 
 dpt.on('error', (err) => console.error(chalk.red(`DPT error: ${err}`)))
-dpt.once('listening', () => {
-  let callback = (err) => {
-    if (err) console.error(chalk.bold.red(`DPT bootstrap error: ${err}`))
-  }
-
-  for (let bootnode of BOOTNODES) dpt.bootstrap(bootnode, callback)
-  setInterval(() => {
-    console.log(chalk.yellow(`Total nodes in DPT: ${dpt.getPeers().length}`))
-  }, ms('30s'))
-})
 
 // RLPx
 const rlpx = new devp2p.RLPx(new Buffer(PRIVATE_KEY, 'hex'), {
@@ -61,7 +54,7 @@ const rlpx = new devp2p.RLPx(new Buffer(PRIVATE_KEY, 'hex'), {
   capabilities: [
     devp2p.ETH.eth61 // { name: 'eth', version: 61, length: 9, constructor: devp2p.ETH }
   ],
-  listenPort: 30303
+  listenPort: null
 })
 
 rlpx.on('error', (err) => console.log(`RLPx error: ${err.stack}`))
@@ -71,7 +64,6 @@ rlpx.on('peer:add', (peer) => {
   console.log(chalk.green(`Add peer: ${addr} (total: ${Object.keys(rlpx._peers).length})`))
 
   peer.on('error', (peer, err) => console.log(`Peer error (${addr}): ${err.stack}`))
-  peer.on('data', (data) => {})
 
   let eth = peer.getProtocols()[0]
   eth.sendStatus({
@@ -86,7 +78,7 @@ rlpx.on('peer:add', (peer) => {
     switch (code) {
       case devp2p.ETH.MESSAGE_CODES.TX:
         for (let item of payload) {
-          let tx = new EthTx(item)
+          let tx = new EthereumTx(item)
           if (!tx.validate()) break
           console.log(`new tx (${addr}): ${tx.hash().toString('hex')}`)
           onTx(tx)
@@ -101,11 +93,11 @@ rlpx.on('peer:add', (peer) => {
         break
 
       case devp2p.ETH.MESSAGE_CODES.BLOCKS:
-        for (let rawBlock of payload) onBlock(new EthBlock(rawBlock))
+        for (let rawBlock of payload) onBlock(new EthereumBlock(rawBlock))
         break
 
       case devp2p.ETH.MESSAGE_CODES.NEW_BLOCK:
-        onBlock(new EthBlock(payload[0]))
+        onBlock(new EthereumBlock(payload[0]))
         break
 
       default:
@@ -125,6 +117,12 @@ rlpx.on('peer:remove', (peer, reason) => {
   console.log(chalk.yellow(`Remove peer: ${addr} (reason code: ${reason || 'undefined'})`))
 })
 
-// start
-rlpx.listen(30303, '0.0.0.0')
-dpt.bind(30303, '0.0.0.0')
+// uncomment, if you want accept incoming connections
+// rlpx.listen(30303, '0.0.0.0')
+// dpt.bind(30303, '0.0.0.0')
+
+for (let bootnode of BOOTNODES) {
+  dpt.bootstrap(bootnode, (err) => {
+    if (err) console.error(chalk.bold.red(`DPT bootstrap error: ${err}`))
+  })
+}
